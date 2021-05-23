@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
 
     ncinput ni;
     char32_t key;
-    while(key != 'q' && key != NCKEY_ESC) {
+    while(key != NCKEY_ESC) {
         while((key = notcurses_getc_nblock(nc, &ni)) == 0)
             usleep(100);
         if(key == NCKEY_RIGHT)
