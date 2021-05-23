@@ -105,10 +105,14 @@ void matrix_render(struct ncplane *ncp, matrix_t *m)
     ncplane_erase(ncp);
     for(int y=0; y < m->h; y++) {
         for(int x = 0; x < m->w; x++) {
-            if(x == m->cx && y == m->cy)
+            if(x == m->cx && y == m->cy) {
+                ncplane_set_fg_rgb(ncp, 0x000000);
                 ncplane_set_bg_rgb(ncp, 0xFFA500);
-            else
+            }
+            else {
+                ncplane_set_fg_rgb(ncp, 0x00FF00);
                 ncplane_set_bg_rgb(ncp, 0x000000);
+            }
             ncplane_putchar_yx(ncp, y, x, matrix_get(m, x, y));
         }
     }
@@ -151,7 +155,6 @@ int main(int argc, char *argv[])
 
     int dimy, dimx;
     struct ncplane* nstd = notcurses_stddim_yx(nc, &dimy, &dimx);
-    ncplane_set_fg_rgb(nstd, 0x00FF00);
 
     ncinput ni;
     char32_t key;
